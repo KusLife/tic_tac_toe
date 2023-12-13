@@ -1,11 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic Tac Toe</title>
-</head>
-<body>
-  
-</body>
-</html>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: black;
+}
+
+.grid-container {
+  width: 600px;
+  height: 600px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.grid-item {
+  height: 194px;
+  min-width: 194px;
+  background: gray;
+  margin: 3px;
+  font-size: 200px;
+  padding-bottom: 30px;
+   /* text-align: center; */
+  /* letter-spacing: 0px; */
+  /* line-height: 50px;  */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .grid-item p {
+  font-size: 250px;
+  text-align: center;
+  line-height: normal;
+} */
+
+
