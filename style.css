@@ -6,10 +6,12 @@
 }
 
 .grid-container {
+  cursor: grab;
   width: 600px;
   height: 600px;
   display: grid;
   grid-template-columns: auto auto auto;
+  user-select: none;
 }
 
 .grid-item {
