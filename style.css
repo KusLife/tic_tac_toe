@@ -29,10 +29,8 @@
   justify-content: center;
 }
 
-/* .grid-item p {
-  font-size: 250px;
-  text-align: center;
-  line-height: normal;
-} */
+.win {
+  background: white;
+}
 
 
