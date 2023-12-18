@@ -54,6 +54,10 @@
   justify-content: center;
 }
 
+.grid-item:hover {
+  background-color: rgb(169, 169, 169);
+}
+
 /* *** Make inner text shadow */
 /* https://stackoverflow.com/questions/2889501/inner-text-shadow-with-css */
 
@@ -61,5 +65,9 @@
 .win {
   background: white;
 }
+.grid-item.buisy {
+  background: rgb(198, 19, 19);
+}
+
 
 

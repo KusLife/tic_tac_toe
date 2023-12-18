@@ -2,19 +2,20 @@
 const grid_container = document.querySelector('#grid_container');
 let Levels;
 level_1 = 8;
+level_2 = 11;
 
-// Here will be a fnc that expt leves and set em un 'for'
+// *** Here will be a fnc that expt leves and set em un 'for'
 
 function set3x3(params) {
   for (let i = 0; i <= level_1; i++) {
     grid_container.innerHTML += `<div class='grid-item ' id='${i}'></div>`;
   }
 }
-
 set3x3();
 // Listen where was a click and swow it in a squer
-const grid_Evl = grid_container.addEventListener('click', setAreaId);
 // Gets id where cliked and pass it to set or rejet the moove
+const grid_Evl = grid_container.addEventListener('click', setAreaId);
+
 function setAreaId(event) {
   const chosenId = event.target.id;
   chosenArea(chosenId);
@@ -37,14 +38,6 @@ const playersData = [
     },
   },
 ];
-
-const playerO = { score: 0, turn: 'o', pattern: [] };
-// const score = [{ playerX: 0 }, { playerO: 0 }];
-// variables for gether plr moves and switch btn them
-// const playerX = 'x';
-// const playerO = 'o';
-// let playerXPattern = [];
-// let playerOPattern = [];
 
 // The arrey of all posible win patterns
 const winPatternsId = [
@@ -79,15 +72,23 @@ function chosenArea(id) {
       checkForWin(playersData[1].O.pattern, winPatternsId);
     }
   } else {
-    //here will be a colback fnc shows in other color
-    //that this squer is buisy
-    console.log('buisy');
+    // console.log('buisy');
+    buisySquer(grid_item_chosen)
   }
+}
+
+// Fnc shows that this squer is buisy
+function buisySquer(squer) {
+  const classBuisy = squer.classList
+  classBuisy.add('buisy') 
+  setTimeout(() => {
+    classBuisy.remove('buisy')
+  }, 100)
 }
 
 // Looking for paterns and telling who won
 // remove event listener
-// *** If no 3 ids, dont chack
+// If no 3 ids, dont chack
 function checkForWin(arrNum, patterns) {
   if (arrNum.length >= 3) {
     patterns.forEach((pattern) => {
@@ -97,16 +98,13 @@ function checkForWin(arrNum, patterns) {
         console.log('There is a winning pattern!', pattern);
         showWinner(pattern);
         grid_container.removeEventListener('click', setAreaId);
-        // return true;
       }
       // console.log("No winning pattern found.");
     });
   }
-  // return false;
 }
-// *** Fnc shows that this squer is buisy
 
-//Here we mark squers that have win ptrn
+// Here we mark squers that have win ptrn
 function showWinner(ids) {
   ids.forEach((id) => {
     const winSqurs = document.getElementById(id);
@@ -118,15 +116,18 @@ function showWinner(ids) {
 // Show score and whos turn
 const resetScoreBtn = document.getElementById('reset_score_btn');
 const resetScoreBtnEvl = resetScoreBtn.addEventListener('click', resetScores);
+
 function resetScores() {
   grid_container.innerHTML = '';
   set3x3();
-  Object.keys(playersData).forEach((item) => {
-    playersData[item].pattern = [];
-    playersData[item].score = 0;
-    console.log(playersData[item].pattern, playersData[item].score);
-    console.log(playersData[0].X.pattern);
+  playersData.forEach((player) => {
+    Object.keys(player).forEach((item) => {
+      player[item].pattern = [];
+      player[item].score = 0;
+    });
   });
+  grid_container.addEventListener('click', setAreaId);
+  
 }
 // *** Animation of win squers through classes
 
@@ -137,3 +138,4 @@ function resetScores() {
 // *** Animation that is adaptive and has a decorative purpose
 
 // *** Grow the grid for 4 sqrs
+
